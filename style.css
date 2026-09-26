@@ -49,7 +49,7 @@ body {
 .container {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 clamp(14px, 4vw, 28px);
 }
 
 .math {
@@ -72,33 +72,33 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px 16px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--border-hairline);
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: clamp(10px, 1.5vw, 11.5px);
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   color: var(--ink-secondary);
 }
 
 .title-block {
-  padding: 30px 0 24px;
+  padding: clamp(20px, 3.5vw, 30px) 0 clamp(18px, 2.5vw, 24px);
   max-width: 920px;
 }
 
 .document-kicker {
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: clamp(10.5px, 1.5vw, 11.5px);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--color-eps);
   margin-bottom: 10px;
 }
 
 .title-block h1 {
   font-family: var(--font-serif);
-  font-size: 40px;
+  font-size: clamp(26px, 4.5vw, 40px);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.015em;
@@ -108,7 +108,7 @@ body {
 
 .lead-paragraph {
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: clamp(16.5px, 2.2vw, 20px);
   line-height: 1.55;
   color: var(--ink-secondary);
 }
@@ -150,7 +150,7 @@ body {
    FƏSİL BÖLMƏLƏRİ
    ========================================================================== */
 .essay-section {
-  padding: 44px 0;
+  padding: clamp(28px, 4.5vw, 44px) 0;
   border-bottom: 1px solid var(--border-strong);
 }
 
@@ -161,16 +161,16 @@ body {
 .section-num {
   display: block;
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: clamp(10.5px, 1.5vw, 11.5px);
   font-weight: 600;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.08em;
   color: var(--ink-muted);
   margin-bottom: 6px;
 }
 
 .section-header h2 {
   font-family: var(--font-serif);
-  font-size: 30px;
+  font-size: clamp(22px, 3.5vw, 30px);
   font-weight: 700;
   line-height: 1.22;
   color: var(--ink-primary);
@@ -178,7 +178,7 @@ body {
 
 .section-intro {
   font-family: var(--font-serif);
-  font-size: 19px;
+  font-size: clamp(16px, 2vw, 19px);
   line-height: 1.6;
   color: var(--ink-secondary);
   max-width: 880px;
@@ -1176,6 +1176,13 @@ input[type="number"]:focus {
   padding: 4px 10px;
   border: 1px solid var(--border-strong);
   align-self: flex-start;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.workbench-main,
+.workbench-sidebar {
+  min-width: 0;
 }
 
 .numberline-box {
@@ -1189,6 +1196,7 @@ input[type="number"]:focus {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  gap: 8px;
   margin-bottom: 16px;
 }
 
@@ -1202,7 +1210,8 @@ input[type="number"]:focus {
 .eded-oxu-kapsul {
   background-color: var(--bg-paper);
   border: 1px solid var(--border-hairline);
-  padding: 34px 20px 24px;
+  padding: 34px 14px 24px;
+  overflow: hidden;
 }
 
 .eded-oxu-xett {
@@ -1293,7 +1302,8 @@ input[type="number"]:focus {
 .comp-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-strong);
-  padding: 22px 24px;
+  padding: clamp(16px, 2.5vw, 22px) clamp(16px, 2.5vw, 24px);
+  min-width: 0;
 }
 
 .comp-tag {
@@ -1307,14 +1317,14 @@ input[type="number"]:focus {
 
 .comp-card h3 {
   font-family: var(--font-serif);
-  font-size: 23px;
+  font-size: clamp(19px, 2.5vw, 23px);
   font-weight: 700;
   margin-bottom: 10px;
 }
 
 .comp-card p {
   font-family: var(--font-serif);
-  font-size: 17.5px;
+  font-size: clamp(15.5px, 2vw, 17.5px);
   line-height: 1.55;
   color: var(--ink-secondary);
   margin-bottom: 14px;
@@ -1325,14 +1335,16 @@ input[type="number"]:focus {
   border-left: 3px solid var(--color-delta);
   padding: 10px 14px;
   margin-bottom: 12px;
+  overflow-x: auto;
 }
 
 .comp-math code {
   font-family: var(--font-mono);
-  font-size: 13.5px;
+  font-size: clamp(11.5px, 2.4vw, 13.5px);
   font-weight: 600;
   color: var(--ink-primary);
   line-height: 1.7;
+  word-break: break-word;
 }
 
 .comp-foot {
@@ -1353,3 +1365,258 @@ input[type="number"]:focus {
   flex-wrap: wrap;
   gap: 12px;
 }
+
+/* ==========================================================================
+   RESPONSİV UYĞUNLAŞDIRMA (PLANŞET VƏ MOBİL EKRANLAR)
+   ========================================================================== */
+@media (max-width: 980px) {
+  .chapter-nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nav-item:nth-child(2) {
+    border-right: none;
+  }
+
+  .nav-item:nth-child(1),
+  .nav-item:nth-child(2) {
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .workbench-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .slide-grid {
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 860px) {
+  .scene-tabs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .scene-tab {
+    border-bottom: 1px solid var(--border-hairline);
+  }
+
+  .remotion-stage {
+    min-height: auto;
+    padding: 22px 18px;
+  }
+
+  .slide-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .slide-Portraits {
+    max-width: 360px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .slide-Portraits.single-portrait {
+    max-width: 230px;
+  }
+
+  .large-portrait .portrait-img-wrap {
+    height: 210px;
+  }
+
+  .paradox-cards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .p-arrow {
+    transform: rotate(90deg);
+    justify-self: center;
+    line-height: 1;
+    margin: 2px 0;
+  }
+
+  .p-code {
+    overflow-x: auto;
+    font-size: 13px;
+  }
+
+  .figure-controls-bar {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .step-selector-bar {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .remotion-controls {
+    flex-wrap: wrap;
+    padding: 12px 14px;
+    gap: 8px;
+  }
+
+  .r-timeline-wrap {
+    order: -1;
+    flex: 1 1 100%;
+    margin-bottom: 4px;
+  }
+
+  .r-play-btn {
+    flex: 1 1 auto;
+    min-width: 145px;
+  }
+
+  .r-frame-counter {
+    margin-left: auto;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .chapter-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-item {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-hairline);
+    padding: 11px 12px;
+  }
+
+  .nav-item:last-child {
+    border-bottom: none;
+  }
+
+  .scene-tabs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .scene-tab:nth-child(2n) {
+    border-right: none;
+  }
+
+  .scene-tab:last-child {
+    grid-column: 1 / -1;
+    border-right: none;
+  }
+
+  .portrait-img-wrap {
+    height: 150px;
+  }
+
+  .slide-content h3,
+  .slide-single-col h3 {
+    font-size: 21px;
+  }
+
+  .slide-content p,
+  .slide-sub {
+    font-size: 16px;
+  }
+
+  .berkeley-quote {
+    font-size: 16.5px;
+    padding: 12px 14px;
+  }
+
+  .erreur-transform {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .er-arrow {
+    transform: rotate(90deg);
+    align-self: center;
+    line-height: 1;
+  }
+
+  .mm-eq {
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  .r-play-btn {
+    flex: 1 1 100%;
+  }
+
+  .r-btn {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 8px 10px;
+  }
+
+  .r-frame-counter {
+    flex: 1 1 100%;
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  .interactive-figure {
+    padding: 14px 12px;
+  }
+
+  .preset-pills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .pill-btn {
+    text-align: center;
+    padding: 8px 6px;
+    font-size: 11.5px;
+  }
+
+  .panel-block {
+    padding: 14px 14px;
+  }
+
+  .fn-preset-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .two-col-fields {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .action-row {
+    flex-direction: column;
+  }
+
+  .graph-toolbar {
+    padding: 10px 12px;
+  }
+
+  .zoom-toggle-btn {
+    width: 100%;
+    text-align: center;
+    padding: 7px 10px;
+  }
+
+  .numberline-box {
+    padding: 12px 12px;
+  }
+
+  .eded-oxu-kapsul {
+    padding: 32px 8px 20px;
+  }
+
+  .ox-delta-sol,
+  .ox-delta-sag {
+    font-size: 11px;
+    padding: 0 3px;
+  }
+}
+

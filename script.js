@@ -127,20 +127,44 @@ intEpsSlider.addEventListener("input", intervalSimulyatoruCek);
 let intSurusdur = false;
 intCanvas.addEventListener("mousedown", (e) => {
   intSurusdur = true;
-  intervalMouseYenile(e);
+  intervalMouseYenile(e.clientX);
 });
 window.addEventListener("mousemove", (e) => {
-  if (intSurusdur) intervalMouseYenile(e);
+  if (intSurusdur) intervalMouseYenile(e.clientX);
 });
 window.addEventListener("mouseup", () => {
   intSurusdur = false;
 });
 
-function intervalMouseYenile(e) {
+intCanvas.addEventListener(
+  "touchstart",
+  (e) => {
+    if (e.touches.length > 0) {
+      intSurusdur = true;
+      intervalMouseYenile(e.touches[0].clientX);
+    }
+  },
+  { passive: true }
+);
+intCanvas.addEventListener(
+  "touchmove",
+  (e) => {
+    if (intSurusdur && e.touches.length > 0) {
+      intervalMouseYenile(e.touches[0].clientX);
+    }
+  },
+  { passive: true }
+);
+window.addEventListener("touchend", () => {
+  intSurusdur = false;
+});
+
+function intervalMouseYenile(clientX) {
   const rect = intCanvas.getBoundingClientRect();
-  const px = (e.clientX - rect.left) * (intCanvas.width / rect.width);
-  const solPad = 70;
-  const sagPad = 70;
+  const px = (clientX - rect.left) * (intCanvas.width / rect.width);
+  const kicikEkran = window.innerWidth < 600;
+  const solPad = kicikEkran ? 36 : 70;
+  const sagPad = kicikEkran ? 36 : 70;
   const minVal = 2.5;
   const maxVal = 5.6;
   let val = minVal + ((px - solPad) / (intCanvas.width - solPad - sagPad)) * (maxVal - minVal);
@@ -155,6 +179,14 @@ function intervalMouseYenile(e) {
 }
 
 function intervalSimulyatoruCek() {
+  const kicikEkran = window.innerWidth < 600;
+  const hedefW = kicikEkran ? 620 : 980;
+  const hedefH = kicikEkran ? 220 : 210;
+  if (intCanvas.width !== hedefW || intCanvas.height !== hedefH) {
+    intCanvas.width = hedefW;
+    intCanvas.height = hedefH;
+  }
+
   const W = intCanvas.width;
   const H = intCanvas.height;
   intCtx.clearRect(0, 0, W, H);
@@ -162,8 +194,8 @@ function intervalSimulyatoruCek() {
   const eps = parseFloat(intEpsSlider.value);
   intEpsVal.textContent = `ε = ${eps.toFixed(2)}`;
 
-  const solPad = 70;
-  const sagPad = 70;
+  const solPad = kicikEkran ? 36 : 70;
+  const sagPad = kicikEkran ? 36 : 70;
   const oxY = 118;
   const minVal = 2.5;
   const maxVal = 5.6;
@@ -188,13 +220,13 @@ function intervalSimulyatoruCek() {
   intCtx.fillStyle = "#faf1f0";
   intCtx.fillRect(px5, 32, W - sagPad - px5, 140);
 
-  intCtx.font = "600 11.5px 'IBM Plex Mono', monospace";
+  intCtx.font = kicikEkran ? "600 10.5px 'IBM Plex Mono', monospace" : "600 11.5px 'IBM Plex Mono', monospace";
   intCtx.fillStyle = "#156836";
   intCtx.textAlign = "center";
-  intCtx.fillText("İCAZƏ VERİLƏN DAXİLİ İNTERVAL: (3, 5)", (px3 + px5) / 2, 50);
+  intCtx.fillText(kicikEkran ? "DAXİLİ İNTERVAL: (3, 5)" : "İCAZƏ VERİLƏN DAXİLİ İNTERVAL: (3, 5)", (px3 + px5) / 2, 50);
 
   intCtx.fillStyle = "#a82020";
-  intCtx.fillText("İNTERVALDAN KƏNAR (> 5)", (px5 + W - sagPad) / 2, 50);
+  intCtx.fillText(kicikEkran ? "KƏNAR (>5)" : "İNTERVALDAN KƏNAR (> 5)", (px5 + W - sagPad) / 2, 50);
 
   intCtx.save();
   intCtx.setLineDash([4, 4]);
@@ -543,10 +575,34 @@ canvas.addEventListener("mousemove", (e) => {
 
 canvas.addEventListener("mouseleave", () => {
   mouseX = null;
-  mouseMelumat.textContent = "Siçanı qrafikin üzərində gəzdirərək istənilən x nöqtəsini yoxla";
+  mouseMelumat.textContent = "Siçanı (və ya barmağını) qrafikin üzərində gəzdirərək istənilən x nöqtəsini yoxla";
   mouseMelumat.style.color = "#181816";
   yenileSimulyator();
 });
+
+canvas.addEventListener(
+  "touchstart",
+  (e) => {
+    if (e.touches.length > 0) {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
+      yenileSimulyator();
+    }
+  },
+  { passive: true }
+);
+
+canvas.addEventListener(
+  "touchmove",
+  (e) => {
+    if (e.touches.length > 0) {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
+      yenileSimulyator();
+    }
+  },
+  { passive: true }
+);
 
 // Ədədin kiçikliyinə görə avtomatik vergüldən sonrakı rəqəm sayını seçən funksiya
 function deqiqFormat(eded, adiReqem = 2) {
@@ -626,13 +682,19 @@ function yenileSimulyator() {
     simmetriyaIzah.textContent = `Əyri funksiya: Sol ətraf (${solEtraf.toFixed(eDeq)}) ≠ Sağ ətraf (${sagEtraf.toFixed(eDeq)})`;
   }
 
-  // 1D Ədəd oxu qutularının CSS enini funksiyanın maksimum ε ətrafına görə özütənzimləyirik!
+  // 1D Ədəd oxu qutularının CSS enini konteyner ölçüsünə və maksimum ε ətrafına görə özütənzimləyirik!
   const refXSol = tersXTap(ifade, x0, artandir ? L - epsMax : L + epsMax, "sol");
   const refXSag = tersXTap(ifade, x0, artandir ? L + epsMax : L - epsMax, "sag");
   const refMaxEtraf = Math.max(1e-5, Math.max(x0 - refXSol, refXSag - x0));
 
-  const solEn = Math.max(42, Math.min(270, (solEtraf / refMaxEtraf) * 210));
-  const sagEn = Math.max(42, Math.min(270, (sagEtraf / refMaxEtraf) * 210));
+  const xettEl = oxSolQutu.parentElement;
+  const xettEn = xettEl && xettEl.clientWidth > 0 ? xettEl.clientWidth : 560;
+  const yariMaxEn = Math.min(265, Math.max(68, Math.floor((xettEn - 36) / 2)));
+  const yariBazaEn = Math.min(210, Math.floor(yariMaxEn * 0.85));
+  const minQutuEn = xettEn < 360 ? 36 : 42;
+
+  const solEn = Math.max(minQutuEn, Math.min(yariMaxEn, (solEtraf / refMaxEtraf) * yariBazaEn));
+  const sagEn = Math.max(minQutuEn, Math.min(yariMaxEn, (sagEtraf / refMaxEtraf) * yariBazaEn));
 
   oxSolQutu.style.width = `${solEn}px`;
   oxSagQutu.style.width = `${sagEn}px`;
@@ -647,12 +709,20 @@ function yenileSimulyator() {
 // 2D KOORDİNAT QRAFİKİ (TAM (0,0) ƏYRİSİ VƏ TOQQUŞMAYAN ETİKETLƏR İLƏ)
 // ============================================================================
 function qrafikiCek(ifade, x0, L, eps, epsMax, xSol, xSag, yAsagi, yYuxari, refXSol, refXSag) {
+  const kicikEkran = window.innerWidth < 600;
+  const hedefW = kicikEkran ? 580 : 760;
+  const hedefH = kicikEkran ? 420 : 440;
+  if (canvas.width !== hedefW || canvas.height !== hedefH) {
+    canvas.width = hedefW;
+    canvas.height = hedefH;
+  }
+
   const W = canvas.width;
   const H = canvas.height;
   ctx.clearRect(0, 0, W, H);
 
-  const solBosluq = 92;
-  const sagBosluq = 40;
+  const solBosluq = kicikEkran ? 80 : 92;
+  const sagBosluq = kicikEkran ? 24 : 40;
   const ustBosluq = 38;
   const altBosluq = 64;
 
@@ -1057,17 +1127,18 @@ function etiketQutusuCek(x, y, metn, fonReng, cerciveReng, yaziReng) {
   ctx.font = "600 11.5px 'IBM Plex Sans', sans-serif";
   const en = ctx.measureText(metn).width + 14;
   const hundurluk = 22;
+  const duzX = Math.max(6, Math.min(canvas.width - en - 6, x));
 
   ctx.fillStyle = fonReng;
   ctx.strokeStyle = cerciveReng;
   ctx.lineWidth = 1;
 
-  ctx.fillRect(x, y, en, hundurluk);
-  ctx.strokeRect(x, y, en, hundurluk);
+  ctx.fillRect(duzX, y, en, hundurluk);
+  ctx.strokeRect(duzX, y, en, hundurluk);
 
   ctx.fillStyle = yaziReng;
   ctx.textAlign = "left";
-  ctx.fillText(metn, x + 7, y + 15);
+  ctx.fillText(metn, duzX + 7, y + 15);
   ctx.restore();
 }
 
@@ -1089,6 +1160,12 @@ function oxBasiCek(x, y, istiqamet, reng) {
   ctx.restore();
 }
 
+window.addEventListener("resize", () => {
+  intervalSimulyatoruCek();
+  yenileSimulyator();
+});
+
 // İlk açılışda işə salırıq
 intervalSimulyatoruCek();
 yenileSimulyator();
+
