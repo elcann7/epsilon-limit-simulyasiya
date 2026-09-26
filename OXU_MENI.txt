@@ -1,0 +1,30 @@
+======================================================
+MƏNİM LİMİT SİMULYATORUM - İSTİFADƏ VƏ ÖYRƏNMƏ TƏLİMATI
+======================================================
+
+Salam! Sən qayıdana qədər bütün quraşdırmanı tamamladım:
+
+1. VS Code (Visual Studio Code) tam quraşdırıldı.
+2. HTML və CSS-i bir-birindən tam ayırdım (artıq baş qarışıqlığı yoxdur!):
+   - index.html  --> Yalnız səliqəli səhifə strukturu (daxilində heç bir CSS yoxdur).
+   - style.css   --> Yalnız rənglər, şriftlər və səhifə dizaynı.
+   - script.js   --> Cəmi bir neçə aydın blokda limit və ətraf daralması məntiqi.
+
+------------------------------------------------------
+BU LAYİHƏNİ VS CODE-DA NECƏ AÇACAQSAN?
+------------------------------------------------------
+1. VS Code proqramını aç.
+2. Yuxarı menyudan: File -> Open Folder (Qovluq Aç) seç.
+3. Masaüstündəki (Desktop) "Limit_Proyekt" qovluğunu seç və aç.
+4. Soldakı fayllara bax:
+   - index.html
+   - style.css
+   - script.js
+
+------------------------------------------------------
+CANLI BAXMAQ ÜÇÜN:
+------------------------------------------------------
+- "index.html" faylının üzərinə iki dəfə klikləsən, birbaşa Chrome və ya Edge-də açılacaq.
+- Kodda hər dəfə nəsə dəyişib Ctrl+S etdikdən sonra brauzerdə F5 basaraq nəticəyə canlı baxa bilərsən!
+
+Mən buradayam, gələndə yaz, addım-addım davam edək!

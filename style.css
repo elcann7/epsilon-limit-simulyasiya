@@ -1,0 +1,1355 @@
+/* ==========================================================================
+   AKADEMİK MONOQRAFİYA VƏ REMOTION ANİMASİYALI SLAYD ÜSLUBU
+   Qayda: Sıfır neon, sıfır parıltı, sıfır şablon AI kartları.
+   İsti kitab kağızı tonu (#faf8f4), ciddi mətbəə tipoqrafiyası və hamar hərəkət.
+   ========================================================================== */
+
+:root {
+  --bg-paper: #faf8f4;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f3efe6;
+  --ink-primary: #181816;
+  --ink-secondary: #4a4842;
+  --ink-muted: #78746b;
+  --border-hairline: #dcd6c8;
+  --border-strong: #b8b09f;
+
+  --color-eps: #b83b14;
+  --color-eps-bg: #fdf3ef;
+  --color-curve: #156836;
+  --color-curve-bg: #eef7f1;
+  --color-delta: #1b4b8a;
+  --color-delta-bg: #eff4fa;
+  --color-danger: #a82020;
+
+  --font-serif: "Crimson Pro", Georgia, "Times New Roman", serif;
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", "Consolas", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-paper);
+  color: var(--ink-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.math {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.08em;
+}
+
+/* ==========================================================================
+   YUXARI KOLONTİTUL (MASTHEAD)
+   ========================================================================== */
+.monograph-header {
+  background-color: var(--bg-surface);
+  border-bottom: 2px solid var(--ink-primary);
+  padding-top: 16px;
+}
+
+.meta-bar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-hairline);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ink-secondary);
+}
+
+.title-block {
+  padding: 30px 0 24px;
+  max-width: 920px;
+}
+
+.document-kicker {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-eps);
+  margin-bottom: 10px;
+}
+
+.title-block h1 {
+  font-family: var(--font-serif);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink-primary);
+  margin-bottom: 14px;
+}
+
+.lead-paragraph {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink-secondary);
+}
+
+.chapter-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border-hairline);
+}
+
+.nav-item {
+  display: block;
+  padding: 13px 14px;
+  text-decoration: none;
+  color: var(--ink-primary);
+  font-size: 13.5px;
+  font-weight: 600;
+  border-right: 1px solid var(--border-hairline);
+  transition: background-color 0.15s;
+}
+
+.nav-item:last-child {
+  border-right: none;
+}
+
+.nav-item:hover {
+  background-color: var(--bg-subtle);
+}
+
+.nav-item .rom {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--color-eps);
+  margin-right: 6px;
+}
+
+/* ==========================================================================
+   FƏSİL BÖLMƏLƏRİ
+   ========================================================================== */
+.essay-section {
+  padding: 44px 0;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.section-header {
+  margin-bottom: 22px;
+}
+
+.section-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+
+.section-header h2 {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.22;
+  color: var(--ink-primary);
+}
+
+.section-intro {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ink-secondary);
+  max-width: 880px;
+  margin-bottom: 22px;
+}
+
+/* ==========================================================================
+   BÖLMƏ I: REMOTION ÜSLUBUNDA ANİMASİYALI SLAYD PLEYERİ
+   ========================================================================== */
+.remotion-player {
+  background-color: var(--bg-surface);
+  border: 2px solid var(--ink-primary);
+  overflow: hidden;
+}
+
+.remotion-player:fullscreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--bg-paper);
+  padding: 20px;
+}
+
+/* Səhnə Seçim Tabları */
+.scene-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-bottom: 1px solid var(--border-strong);
+  background-color: var(--bg-subtle);
+}
+
+.scene-tab {
+  text-align: left;
+  padding: 11px 14px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--border-hairline);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.scene-tab:last-child {
+  border-right: none;
+}
+
+.scene-tab:hover {
+  background-color: #ebe5d8;
+}
+
+.scene-tab.active {
+  background-color: var(--bg-surface);
+  border-bottom: 3px solid var(--color-eps);
+}
+
+.sc-year {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-eps);
+  margin-bottom: 2px;
+}
+
+.sc-name {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-primary);
+}
+
+/* Əsas Səhnə (Stage) */
+.remotion-stage {
+  position: relative;
+  min-height: 410px;
+  padding: 34px 38px;
+  background-color: #fdfbf7;
+  background-image: radial-gradient(#dcd6c8 0.75px, transparent 0.75px);
+  background-size: 22px 22px;
+  display: flex;
+  align-items: center;
+}
+
+.remotion-player:fullscreen .remotion-stage {
+  flex: 1;
+  padding: 60px 80px;
+}
+
+.r-slide {
+  display: none;
+  width: 100%;
+}
+
+.r-slide.active {
+  display: block;
+}
+
+/* REMOTION SPRING KEYFRAME ANİMASİYALARI */
+@keyframes springSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes springSlideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes stampPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.r-slide.active .anim-card-1 {
+  animation: springSlideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+}
+
+.r-slide.active .anim-card-2 {
+  animation: springSlideUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both;
+}
+
+.r-slide.active .anim-p-1 {
+  animation: springSlideRight 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.r-slide.active .anim-p-2 {
+  animation: springSlideRight 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.32s both;
+}
+
+.r-slide.active .anim-box-1 {
+  animation: stampPop 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+}
+
+/* Səhnə Daxili Qrid və Portretlər */
+.slide-grid {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  gap: 38px;
+  align-items: center;
+}
+
+.slide-Portraits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.slide-Portraits.single-portrait {
+  grid-template-columns: 1fr;
+  max-width: 265px;
+  margin: 0 auto;
+}
+
+.portrait-card {
+  background-color: #ffffff;
+  border: 1px solid var(--ink-primary);
+  padding: 8px;
+}
+
+.portrait-img-wrap {
+  width: 100%;
+  height: 185px;
+  overflow: hidden;
+  background-color: #e8e3d8;
+  border: 1px solid var(--border-hairline);
+}
+
+.large-portrait .portrait-img-wrap {
+  height: 245px;
+}
+
+.portrait-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: sepia(12%) contrast(1.04);
+}
+
+.portrait-meta {
+  padding-top: 8px;
+  text-align: center;
+}
+
+.portrait-meta strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--ink-primary);
+}
+
+.portrait-meta span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-muted);
+}
+
+/* Səhnə Mətni */
+.era-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  background-color: var(--ink-primary);
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+
+.slide-content h3,
+.slide-single-col h3 {
+  font-family: var(--font-serif);
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink-primary);
+  margin-bottom: 12px;
+}
+
+.slide-content p,
+.slide-sub {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  line-height: 1.58;
+  color: var(--ink-secondary);
+  margin-bottom: 12px;
+}
+
+.motion-math-box {
+  background-color: #ffffff;
+  border: 1.5px solid var(--ink-primary);
+  border-left: 5px solid var(--color-eps);
+  padding: 12px 18px;
+  margin-top: 14px;
+}
+
+.mm-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  margin-bottom: 4px;
+}
+
+.mm-eq {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-eps);
+}
+
+/* Səhnə 2: Paradoks Kartları */
+.paradox-cards {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 18px;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.p-step {
+  background-color: #ffffff;
+  border: 1px solid var(--border-strong);
+  padding: 16px 18px;
+}
+
+.p-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  margin-bottom: 8px;
+}
+
+.tag-green {
+  background-color: var(--color-curve-bg);
+  color: var(--color-curve);
+  border: 1px solid #9ec9ad;
+}
+
+.tag-red {
+  background-color: #fdf2f2;
+  color: var(--color-danger);
+  border: 1px solid #e0a8a8;
+}
+
+.p-step h4 {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.p-code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  background-color: var(--bg-paper);
+  padding: 8px 10px;
+  border-left: 3px solid var(--ink-primary);
+  margin-bottom: 8px;
+}
+
+.p-step p {
+  font-size: 13.5px;
+  color: var(--ink-secondary);
+}
+
+.p-arrow {
+  font-size: 26px;
+  color: var(--color-eps);
+  font-weight: bold;
+}
+
+.paradox-stamp {
+  background-color: #fdf2f2;
+  border: 1.5px solid var(--color-danger);
+  color: var(--color-danger);
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 10px 16px;
+  text-align: center;
+}
+
+/* Səhnə 3: Berkli Sitatı */
+.berkeley-quote {
+  background-color: #ffffff;
+  border-left: 4px solid var(--color-eps);
+  border-top: 1px solid var(--border-hairline);
+  border-right: 1px solid var(--border-hairline);
+  border-bottom: 1px solid var(--border-hairline);
+  padding: 14px 20px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--ink-primary);
+  margin: 14px 0;
+}
+
+/* Səhnə 4: ERREUR -> EPSİLON */
+.erreur-transform {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 16px 0;
+}
+
+.er-box {
+  flex: 1;
+  background-color: #ffffff;
+  border: 1.5px solid var(--border-strong);
+  padding: 14px 16px;
+  text-align: center;
+}
+
+.er-result {
+  border-color: var(--color-eps);
+  background-color: var(--color-eps-bg);
+}
+
+.er-sub {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-muted);
+  margin-bottom: 4px;
+}
+
+.er-word {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 24px;
+  letter-spacing: 0.12em;
+  color: var(--ink-primary);
+}
+
+.er-first {
+  color: var(--color-eps);
+  text-decoration: underline;
+}
+
+.er-greek {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--color-eps);
+}
+
+.er-meaning {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-secondary);
+  margin-top: 4px;
+}
+
+.er-arrow {
+  font-size: 24px;
+  color: var(--color-eps);
+}
+
+/* Səhnə 5: Veyerştrass Qaydaları */
+.weierstrass-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.w-rule {
+  background-color: #ffffff;
+  border: 1px solid var(--border-strong);
+  border-left: 4px solid var(--color-delta);
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+/* Remotion Control Bar */
+.remotion-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background-color: var(--bg-subtle);
+  border-top: 1px solid var(--border-strong);
+}
+
+.r-btn {
+  padding: 7px 13px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  background-color: #ffffff;
+  border: 1px solid var(--border-strong);
+  color: var(--ink-primary);
+  cursor: pointer;
+}
+
+.r-btn:hover {
+  background-color: var(--bg-paper);
+}
+
+.r-play-btn {
+  background-color: var(--ink-primary);
+  color: #ffffff;
+  border-color: var(--ink-primary);
+  min-width: 175px;
+}
+
+.r-play-btn:hover {
+  background-color: #33322e;
+}
+
+.r-timeline-wrap {
+  flex: 1;
+  height: 8px;
+  background-color: #dcd6c8;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.r-timeline-bar {
+  height: 100%;
+  width: 20%;
+  background-color: var(--color-eps);
+  transition: width 0.1s linear;
+}
+
+.r-frame-counter {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  min-width: 130px;
+  text-align: right;
+}
+
+/* ==========================================================================
+   BÖLMƏ II: İNTERAKTİV (3, 5) AÇIQ İNTERVAL SİMULYATORU
+   ========================================================================== */
+.interactive-figure {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  padding: 20px 24px;
+}
+
+.figure-controls-bar {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-hairline);
+  margin-bottom: 16px;
+}
+
+.ctrl-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-primary);
+  margin-bottom: 8px;
+}
+
+.preset-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 11px;
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-strong);
+  color: var(--ink-primary);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.pill-btn:hover {
+  background-color: var(--bg-subtle);
+}
+
+.pill-btn.active {
+  background-color: var(--ink-primary);
+  color: #ffffff;
+  border-color: var(--ink-primary);
+}
+
+.pill-btn.boundary-pill {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.pill-btn.boundary-pill.active {
+  background-color: var(--color-danger);
+  color: #ffffff;
+}
+
+.ctrl-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.mono-val {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--color-eps);
+  background-color: var(--color-eps-bg);
+  padding: 2px 8px;
+  border: 1px solid #e8b8a6;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 6px;
+  accent-color: var(--color-eps);
+  cursor: pointer;
+}
+
+.canvas-frame {
+  background-color: #ffffff;
+  border: 1px solid var(--border-hairline);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.figure-status-bar {
+  margin-top: 14px;
+  padding: 12px 16px;
+  font-size: 14.5px;
+  border-left: 4px solid var(--color-curve);
+  background-color: var(--color-curve-bg);
+  color: var(--ink-primary);
+}
+
+.figure-status-bar.status-error {
+  border-left-color: var(--color-danger);
+  background-color: #fdf2f2;
+}
+
+/* ==========================================================================
+   BÖLMƏ III: ADDIM-ADDIM 2D LİMİT LABORATORİYASI
+   ========================================================================== */
+.step-selector-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.step-tab {
+  text-align: left;
+  padding: 12px 16px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.step-tab:hover {
+  background-color: var(--bg-subtle);
+}
+
+.step-tab.active {
+  background-color: var(--ink-primary);
+  border-color: var(--ink-primary);
+  color: #ffffff;
+}
+
+.step-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-eps);
+  margin-bottom: 3px;
+}
+
+.step-tab.active .step-num {
+  color: #f5b99f;
+}
+
+.step-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.workbench-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.workbench-sidebar {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+}
+
+.panel-block {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.panel-block:last-child {
+  border-bottom: none;
+}
+
+.panel-heading {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink-primary);
+  margin-bottom: 8px;
+}
+
+.panel-note {
+  font-size: 12.5px;
+  color: var(--ink-secondary);
+  margin-bottom: 12px;
+}
+
+.fn-preset-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.fn-btn {
+  text-align: left;
+  padding: 8px 10px;
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-hairline);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.fn-btn strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-primary);
+}
+
+.fn-btn span {
+  display: block;
+  font-size: 11px;
+  color: var(--ink-muted);
+}
+
+.fn-btn:hover {
+  border-color: var(--border-strong);
+}
+
+.fn-btn.active {
+  background-color: var(--color-delta-bg);
+  border-color: var(--color-delta);
+}
+
+.field-row {
+  margin-bottom: 12px;
+}
+
+.field-row label,
+.two-col-fields label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink-primary);
+  background-color: #ffffff;
+  border: 1px solid var(--border-strong);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--ink-primary);
+}
+
+.keypad-wrap {
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-hairline);
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.keypad-caption {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  margin-bottom: 6px;
+}
+
+.math-keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.key-btn {
+  padding: 6px 4px;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 700;
+  background-color: #ffffff;
+  border: 1px solid var(--border-strong);
+  color: var(--ink-primary);
+  cursor: pointer;
+}
+
+.key-btn:hover {
+  background-color: var(--bg-subtle);
+}
+
+.key-btn.key-accent {
+  background-color: var(--color-eps-bg);
+  border-color: #df9f88;
+  color: var(--color-eps);
+}
+
+.key-btn.key-clear {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  background-color: #fdf2f2;
+  border-color: #e0a8a8;
+  color: var(--color-danger);
+}
+
+.two-col-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: end;
+}
+
+.readout-box {
+  padding: 8px 10px;
+  background-color: var(--color-curve-bg);
+  border: 1px solid #9ec9ad;
+  font-family: var(--font-mono);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--color-curve);
+  text-align: center;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.eps-badge {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--color-eps);
+  background-color: var(--color-eps-bg);
+  padding: 2px 8px;
+  border: 1px solid #e5a992;
+}
+
+.slider-captions {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  margin: 6px 0 12px;
+}
+
+.action-row {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-primary {
+  flex: 1;
+  padding: 9px 10px;
+  background-color: var(--ink-primary);
+  color: #ffffff;
+  border: 1px solid var(--ink-primary);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #33322e;
+}
+
+.btn-secondary {
+  padding: 9px 12px;
+  background-color: var(--bg-paper);
+  color: var(--ink-primary);
+  border: 1px solid var(--border-strong);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.data-table td {
+  padding: 7px 4px;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.data-table .num-cell {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.eps-text {
+  color: var(--color-eps);
+}
+
+.delta-text {
+  color: var(--color-delta);
+}
+
+.row-highlight td {
+  background-color: var(--bg-subtle);
+  font-weight: 600;
+  padding: 8px 6px;
+  border-bottom: none;
+}
+
+.step-explanation-banner {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-left: 4px solid var(--ink-primary);
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: var(--ink-primary);
+}
+
+.main-graph-frame {
+  border: 1px solid var(--border-strong);
+  margin-bottom: 16px;
+}
+
+.graph-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.graph-toolbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.zoom-toggle-btn {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  background-color: #ffffff;
+  color: var(--ink-primary);
+  border: 1px solid var(--border-strong);
+  cursor: pointer;
+}
+
+.zoom-toggle-btn:hover {
+  background-color: var(--bg-surface);
+}
+
+.zoom-toggle-btn.active {
+  background-color: var(--ink-primary);
+  color: #ffffff;
+  border-color: var(--ink-primary);
+}
+
+.figure-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-secondary);
+}
+
+.hover-readout {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-primary);
+  background-color: #ffffff;
+  padding: 4px 10px;
+  border: 1px solid var(--border-strong);
+  align-self: flex-start;
+}
+
+.numberline-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  padding: 14px 18px;
+}
+
+.nl-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.nl-formula {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-delta);
+}
+
+.eded-oxu-kapsul {
+  background-color: var(--bg-paper);
+  border: 1px solid var(--border-hairline);
+  padding: 34px 20px 24px;
+}
+
+.eded-oxu-xett {
+  position: relative;
+  height: 3px;
+  background-color: var(--ink-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ox-delta-sol,
+.ox-delta-sag {
+  position: relative;
+  z-index: 1;
+  height: 30px;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width 0.08s linear;
+}
+
+.ox-delta-sol {
+  background-color: #dce8f7;
+  border: 1.5px solid var(--color-delta);
+  border-right: none;
+  color: var(--color-delta);
+}
+
+.ox-delta-sag {
+  background-color: #e5ebf5;
+  border: 1.5px solid #2b3a67;
+  border-left: none;
+  color: #2b3a67;
+}
+
+.ox-merkez {
+  width: 12px;
+  height: 12px;
+  background-color: var(--ink-primary);
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+}
+
+.merkez-etiket {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--ink-primary);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.ox-noqte {
+  position: relative;
+  z-index: 2;
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  border: 2px solid var(--color-delta);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   BÖLMƏ IV: MÜQAYİSƏ CƏDVƏLİ
+   ========================================================================== */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.comp-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  padding: 22px 24px;
+}
+
+.comp-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-eps);
+  margin-bottom: 6px;
+}
+
+.comp-card h3 {
+  font-family: var(--font-serif);
+  font-size: 23px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.comp-card p {
+  font-family: var(--font-serif);
+  font-size: 17.5px;
+  line-height: 1.55;
+  color: var(--ink-secondary);
+  margin-bottom: 14px;
+}
+
+.comp-math {
+  background-color: var(--bg-paper);
+  border-left: 3px solid var(--color-delta);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.comp-math code {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-primary);
+  line-height: 1.7;
+}
+
+.comp-foot {
+  font-size: 15.5px !important;
+  margin-bottom: 0 !important;
+}
+
+.monograph-footer {
+  padding: 24px 0 36px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}

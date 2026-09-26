@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epsilon (ε) Tarixi və Ətrafın Sıxılması — Riyazi Analiz Seminarı</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- AKADEMİK KOLONTİTUL (MASTHEAD) -->
+  <header class="monograph-header">
+    <div class="container">
+      <div class="meta-bar">
+        <span>AZƏRBAYCAN TEXNİKİ UNİVERSİTETİ · KOMPÜTER ELMLƏRİ (6326A2)</span>
+        <span>RİYAZİ ANALİZ SEMİNARI · MÜƏLLİM: ŞAMİL TALIBLI · TƏLƏBƏ: ELCAN</span>
+      </div>
+
+      <div class="title-block">
+        <p class="document-kicker">İNTERAKTİV RİYAZİ TƏQDİMAT VƏ VİZUAL SİMULYASİYA</p>
+        <h1>Epsilon (<span class="math">ε</span>) Nədir, Niyə Yarandı və Ətraf Necə Sıxılır?</h1>
+        <p class="lead-paragraph">
+          Riyazi analizdə <span class="math">ε</span> (epsilon) ətrafı əzbərlənmək üçün yox, 150 illik məntiq böhranını həll etmək üçün doğulub. 
+          Bu təqdimatda əvvəlcə <strong>animasiyalı tarixi slaydlarla</strong> <span class="math">ε</span>-un necə yarandığını, sonra <strong>(3, 5) açıq intervalında sərhəd problemini</strong>, 
+          ən sonda isə <strong>2D qrafikdə Y oxundakı ε-un X oxundakı Sol və Sağ ətrafı necə sıxdığını</strong> canlı görürük.
+        </p>
+      </div>
+
+      <!-- BÖLMƏ NAVİQASİYASI -->
+      <nav class="chapter-nav" aria-label="Bölmələr">
+        <a href="#bolme-tarix" class="nav-item"><span class="rom">I.</span> Animasiyalı Tarix: ε Necə Doğuldu?</a>
+        <a href="#bolme-interval" class="nav-item"><span class="rom">II.</span> (3, 5) İntervalı və Sərhəd Təcrübəsi</a>
+        <a href="#bolme-qrafik" class="nav-item"><span class="rom">III.</span> 2D Qrafik və Sol/Sağ Ətrafın Sıxılması</a>
+        <a href="#bolme-muqayise" class="nav-item"><span class="rom">IV.</span> Düz Xətt (2x) və Əyri (x²) Fərqi</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ======================================================================
+         BÖLMƏ I: REMOTION ÜSLUBUNDA ANİMASİYALI TARİXİ SLAYD PLEYERİ
+         ====================================================================== -->
+    <section id="bolme-tarix" class="essay-section">
+      <div class="section-header">
+        <span class="section-num">FƏSİL I · ANİMASİYALI TARİXİ TƏQDİMAT (1680–1861)</span>
+        <h2>Epsilon (<span class="math">ε</span>) Niyə Ortaya Çıxdı? — 5 Səhnəlik Animasiyalı Xronologiya</h2>
+      </div>
+
+      <!-- REMOTION-STYLE PLAYER CONTAINER -->
+      <div class="remotion-player" id="remotion-player">
+
+        <!-- YUXARI SƏHNƏ SEÇİM TABLARI -->
+        <div class="scene-tabs">
+          <button type="button" class="scene-tab active" data-scene="0">
+            <span class="sc-year">1680 · Səhnə 1</span>
+            <span class="sc-name">Nyuton və Leybnits</span>
+          </button>
+          <button type="button" class="scene-tab" data-scene="1">
+            <span class="sc-year">1700 · Səhnə 2</span>
+            <span class="sc-name">dx Məntiq Xətası</span>
+          </button>
+          <button type="button" class="scene-tab" data-scene="2">
+            <span class="sc-year">1734 · Səhnə 3</span>
+            <span class="sc-name">Berklinin Hücumu</span>
+          </button>
+          <button type="button" class="scene-tab" data-scene="3">
+            <span class="sc-year">1821 · Səhnə 4</span>
+            <span class="sc-name">Koşi: “Erreur” → ε</span>
+          </button>
+          <button type="button" class="scene-tab" data-scene="4">
+            <span class="sc-year">1861 · Səhnə 5</span>
+            <span class="sc-name">Veyerştrass və Ətraf</span>
+          </button>
+        </div>
+
+        <!-- ƏSAS ANİMASİYA SƏHNƏSİ (STAGE) -->
+        <div class="remotion-stage">
+
+          <!-- SƏHNƏ 1: NYUTON VƏ LEYBNİTS (1680) -->
+          <div class="r-slide active" data-index="0">
+            <div class="slide-grid">
+              <div class="slide-Portraits">
+                <div class="portrait-card anim-card-1">
+                  <div class="portrait-img-wrap">
+                    <img src="img/newton.jpg" alt="İsaak Nyuton">
+                  </div>
+                  <div class="portrait-meta">
+                    <strong>İsaak Nyuton</strong>
+                    <span>İngiltərə · 1643–1727</span>
+                  </div>
+                </div>
+                <div class="portrait-card anim-card-2">
+                  <div class="portrait-img-wrap">
+                    <img src="img/leibniz.jpg" alt="Qotfrid Leybnits">
+                  </div>
+                  <div class="portrait-meta">
+                    <strong>Qotfrid Leybnits</strong>
+                    <span>Almaniya · 1646–1716</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="slide-content">
+                <div class="era-badge">I SƏHNƏ · XVII ƏSRİN SONU (1680)</div>
+                <h3>Hərəkəti Hesablamaq Üçün Uydurulan “Sonsuz Kiçik” (<span class="math">dx</span>)</h3>
+                <p class="anim-p-1">
+                  Nyuton və Leybnits planetlərin sürətini və əyrilərin toxunanını tapmaq üçün <strong>diferensial hesabı (Calculus)</strong> kəşf etdilər.
+                </p>
+                <p class="anim-p-2">
+                  Amma onların əlində bugünkü <em>limit</em> və ya <em>ε-ətraf</em> anlayışı yox idi. Ona görə də onlar <span class="math">dx</span> adlı qəribə bir ədəd uydurdular: 
+                  <strong>“Sıfırdan böyükdür, amma istənilən real ədəddən kiçikdir!”</strong>
+                </p>
+                <div class="motion-math-box anim-box-1">
+                  <div class="mm-title">Onların yazdığı anlıq sürət düsturu:</div>
+                  <div class="mm-eq">Sürət = [ f(x + dx) − f(x) ] / dx</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SƏHNƏ 2: dx PARADOKSU (1700) -->
+          <div class="r-slide" data-index="1">
+            <div class="slide-single-col">
+              <div class="era-badge">II SƏHNƏ · RİYAZİ ZİDDİYYƏT (1700)</div>
+              <h3>Eyni Misalın İçində İkiüzlü <span class="math">dx</span>: Həm Sıfır Deyil, Həm Sıfırdır!</h3>
+              <p class="slide-sub">
+                Məsələn, <span class="math">f(x) = x²</span> funksiyasının törəməsini (<span class="math">2x</span>) tapanda <span class="math">dx</span> ilə belə rəftar edirdilər:
+              </p>
+
+              <div class="paradox-cards">
+                <div class="p-step anim-card-1">
+                  <span class="p-tag tag-green">ADDIM 1 · ƏVVƏLDƏ</span>
+                  <h4>“dx sıfır deyil (dx ≠ 0)” deyib ona bölürdülər:</h4>
+                  <div class="p-code">[(x + dx)² − x²] / dx = (2x·dx + dx²) / dx = <strong>2x + dx</strong></div>
+                  <p>Çünki riyaziyyatda <strong>sıfıra bölmək qadağandır</strong>. Bölmək üçün məcbur <span class="math">dx ≠ 0</span> deyirdilər.</p>
+                </div>
+
+                <div class="p-arrow anim-p-1">➔</div>
+
+                <div class="p-step anim-card-2">
+                  <span class="p-tag tag-red">ADDIM 2 · SONDA</span>
+                  <h4>Bölmə bitən kimi “dx sıfırdır (dx = 0)” deyib silirdilər:</h4>
+                  <div class="p-code">2x + dx = 2x + 0 = <strong>2x</strong></div>
+                  <p>Тəmiz <span class="math">2x</span> cavabını almaq üçün bayaq sıfır olmayan <span class="math">dx</span>-i birdən-birə <strong>0</strong> hesab edirdilər!</p>
+                </div>
+              </div>
+
+              <div class="paradox-stamp anim-box-1">
+                MƏNTİQİ XƏTA: Bir ədəd eyni tənlikdə həm 0-dan fərqli, həm də 0-a bərabər ola bilməz!
+              </div>
+            </div>
+          </div>
+
+          <!-- SƏHNƏ 3: CORC BERKLİNİN TƏNQİDİ (1734) -->
+          <div class="r-slide" data-index="2">
+            <div class="slide-grid">
+              <div class="slide-Portraits single-portrait">
+                <div class="portrait-card large-portrait anim-card-1">
+                  <div class="portrait-img-wrap">
+                    <img src="img/berkeley.jpg" alt="Corc Berkli">
+                  </div>
+                  <div class="portrait-meta">
+                    <strong>Yepiskop Corc Berkli</strong>
+                    <span>İrland filosofu · “The Analyst” (1734)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="slide-content">
+                <div class="era-badge">III SƏHNƏ · BÖYÜK BÖHRAN (1734)</div>
+                <h3>“Ölmüş Kəmiyyətlərin Kabusu!” (Ghosts of Departed Quantities)</h3>
+                <p class="anim-p-1">
+                  1734-cü ildə filosof Corc Berkli <em>“The Analyst”</em> adlı məşhur kitabçasını dərc edərək bütün Avropa riyaziyyatçılarını çıxılmaz vəziyyətə saldı:
+                </p>
+                <blockquote class="berkeley-quote anim-card-2">
+                  “Əvvəlcə <span class="math">dx</span> var deyib bölürsünüz, sonra yoxdur deyib silirsiniz. Bu nə ədəddir? Sıfırdırmı, yoxsa heç nədirmi? 
+                  Yoxsa bunlar <strong>ölmüş kəmiyyətlərin kabusudur</strong>?”
+                </blockquote>
+                <p class="anim-p-2">
+                  Bu tənqiddən sonra riyaziyyatda <strong>100 illik böhran</strong> yarandı: düsturlar işləyirdi, amma heç kim onların niyə doğru olduğunu məntiqlə sübut edə bilmirdi.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SƏHNƏ 4: KOŞİ VƏ ERREUR -> EPSİLON (1821) -->
+          <div class="r-slide" data-index="3">
+            <div class="slide-grid">
+              <div class="slide-Portraits single-portrait">
+                <div class="portrait-card large-portrait anim-card-1">
+                  <div class="portrait-img-wrap">
+                    <img src="img/cauchy.jpg" alt="Oqüsten Lui Koşi">
+                  </div>
+                  <div class="portrait-meta">
+                    <strong>Oqüsten Lui Koşi (Cauchy)</strong>
+                    <span>Fransa · “Cours d'Analyse” (1821)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="slide-content">
+                <div class="era-badge">IV SƏHNƏ · XİLASKAR İDEYA (1821)</div>
+                <h3>Fransızca “Erreur” (Xəta) Sözündən Doğulan <span class="math">ε</span> (Epsilon)</h3>
+                <p class="anim-p-1">
+                  1821-ci ildə böyük fransız riyaziyyatçısı <strong>Oqüsten Lui Koşi</strong> Paris Politexnik Məktəbində dərs deyərkən “sonsuz kiçik kabus” anlayışını atdı və məsələyə <strong>fiziki ölçü xətası</strong> kimi baxdı:
+                </p>
+
+                <!-- ANİMASİYALI HƏRF ÇEVRİLMƏSİ -->
+                <div class="erreur-transform anim-card-2">
+                  <div class="er-box">
+                    <span class="er-sub">Fransızca söz:</span>
+                    <strong class="er-word"><span class="er-first">E</span> R R E U R</strong>
+                    <span class="er-meaning">(Tərcüməsi: “Xəta” / “Tolerantlıq”)</span>
+                  </div>
+                  <div class="er-arrow">➔</div>
+                  <div class="er-box er-result">
+                    <span class="er-sub">Yunan qarşılığı:</span>
+                    <strong class="er-greek">ε</strong>
+                    <span class="er-meaning">Epsilon (İcazə verilən xəta payı)</span>
+                  </div>
+                </div>
+
+                <p class="anim-p-2">
+                  Koşi dedi ki: <em>“Sıfıra bölünən mistik ədəd yoxdur! Sadəcə istədiyimiz qədər sıxa bildiyimiz <strong>ε (epsilon) xəta aralığı</strong> var!”</em>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SƏHNƏ 5: VEYERŞTRASS VƏ MÜASİR ƏTRAF (1861) -->
+          <div class="r-slide" data-index="4">
+            <div class="slide-grid">
+              <div class="slide-Portraits single-portrait">
+                <div class="portrait-card large-portrait anim-card-1">
+                  <div class="portrait-img-wrap">
+                    <img src="img/weierstrass.jpg" alt="Karl Veyerştrass">
+                  </div>
+                  <div class="portrait-meta">
+                    <strong>Karl Veyerştrass (Weierstrass)</strong>
+                    <span>Almaniya · Berlin Mühazirələri (1861)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="slide-content">
+                <div class="era-badge">V SƏHNƏ · MÜASİR RİYAZİ ANALİZ (1861)</div>
+                <h3>Ətrafın Sıxılması: <span class="math">ε</span> Kiçildikcə Sol və Sağ Ətraf Necə Sıxılır?</h3>
+                <p class="anim-p-1">
+                  1861-ci ildə alman riyaziyyatçısı <strong>Karl Veyerştrass</strong> Koşinin ideyasını bu gün dərsliklərdə keçdiyimiz tam dəqiq <strong>Ətraf (Neighborhood)</strong> formasına saldı:
+                </p>
+
+                <div class="weierstrass-rules anim-card-2">
+                  <div class="w-rule">
+                    <strong>1. Hədəfdəki ε-ətraf:</strong> Çıxışda (<span class="math">Y</span> oxunda) hədəf <span class="math">L</span>-in ətrafında <span class="math">(L − ε, L + ε)</span> dəhlizi seçirik.
+                  </div>
+                  <div class="w-rule">
+                    <strong>2. X oxundakı Sol və Sağ ətraf:</strong> Həmin <span class="math">ε</span> dəhlizi <span class="math">X</span> oxunda <span class="math">x₀</span>-ın ətrafında <strong>Sol ətraf</strong> və <strong>Sağ ətraf</strong> yaradır.
+                  </div>
+                  <div class="w-rule">
+                    <strong>3. Sıxılma Qanunu:</strong> Biz <span class="math">ε</span>-u sıfıra doğru sıxdıqca (<span class="math">ε → 0</span>), <span class="math">x₀</span>-ın sol və sağ ətrafı da <span class="math">x₀</span>-ın üzərinə doğru sıxılır!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- REMOTION TIMELINE VƏ İDARƏETMƏ PANELİ -->
+        <div class="remotion-controls">
+          <button type="button" class="r-btn r-play-btn" id="r-play-toggle">⏸ Avto-Slaydı Dayandır</button>
+          <button type="button" class="r-btn" id="r-prev-btn">← Əvvəlki</button>
+          <button type="button" class="r-btn" id="r-next-btn">Növbəti →</button>
+
+          <div class="r-timeline-wrap" id="r-timeline-wrap">
+            <div class="r-timeline-bar" id="r-timeline-bar"></div>
+          </div>
+
+          <span class="r-frame-counter" id="r-frame-counter">Səhnə 1 / 5 · 00:00</span>
+          <button type="button" class="r-btn r-fs-btn" id="r-fullscreen-btn">⛶ Tam Ekran</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         BÖLMƏ II: (3, 5) AÇIQ İNTERVALI VƏ SƏRHƏD TƏCRÜBƏSİ (İNTERAKTİV)
+         ====================================================================== -->
+    <section id="bolme-interval" class="essay-section">
+      <div class="section-header">
+        <span class="section-num">FƏSİL II · BİRÖLÇÜLÜ ƏDƏD OXUNDA TƏCRÜBƏ</span>
+        <h2>Niyə <span class="math">(3, 5)</span> Açıq İntervalında <span class="math">5</span> Daxil Deyil? — Sərhəd və Daxili Nöqtə</h2>
+      </div>
+
+      <p class="section-intro">
+        2D qrafikə keçməzdən əvvəl, <span class="math">ε</span>-ətrafının nə demək olduğunu adi bir ədəd oxunda — <strong>(3, 5) açıq intervalı</strong> üzərində yoxlayaq. 
+        Riyazi qaydaya görə, bir nöqtənin intervalın <strong>daxili nöqtəsi</strong> olması üçün onun ətrafında cüzi də olsa elə bir <span class="math">(x₀ − ε, x₀ + ε)</span> ətrafı tapılmalıdır ki, 
+        bütövlükdə <span class="math">(3, 5)</span>-in içində yerləşsin. Aşağıdakı simulyatorda nöqtəni və <span class="math">ε</span>-u dəyişərək fərqi öz gözünlə gör:
+      </p>
+
+      <div class="interactive-figure">
+        <div class="figure-controls-bar">
+          <div class="control-group">
+            <span class="ctrl-label">1. Yoxlanılan nöqtəni seç (<span class="math">x₀</span>):</span>
+            <div class="preset-pills" id="interval-presets">
+              <button type="button" class="pill-btn" data-pt="4.00">x₀ = 4.00 (Tam mərkəz)</button>
+              <button type="button" class="pill-btn active" data-pt="4.70">x₀ = 4.70 (Sərhədə yaxın)</button>
+              <button type="button" class="pill-btn" data-pt="4.92">x₀ = 4.92 (Çox yaxın)</button>
+              <button type="button" class="pill-btn boundary-pill" data-pt="5.00">x₀ = 5.00 (Sərhəd nöqtəsi!)</button>
+            </div>
+          </div>
+
+          <div class="control-group slider-group">
+            <div class="ctrl-label-row">
+              <span class="ctrl-label">2. Ətrafın radiusunu sıx (<span class="math">ε</span>):</span>
+              <strong class="mono-val" id="int-eps-val">ε = 0.45</strong>
+            </div>
+            <input type="range" id="int-eps-slider" min="0.02" max="0.80" step="0.01" value="0.45">
+          </div>
+        </div>
+
+        <!-- 1D (3, 5) İNTERVAL CANVAS -->
+        <div class="canvas-frame">
+          <canvas id="interval-canvas" width="980" height="210"></canvas>
+        </div>
+
+        <div class="figure-status-bar" id="int-status-box"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         BÖLMƏ III: 2D LİMİT QRAFİKİ — Y OXUNDAN (ε) X OXUNA (SOL/SAĞ ƏTRAF)
+         ====================================================================== -->
+    <section id="bolme-qrafik" class="essay-section">
+      <div class="section-header">
+        <span class="section-num">FƏSİL III · İKİÖLÇÜLÜ KOORDİNAT SİSTEMİNDƏ ƏTRAFIN SIXILMASI</span>
+        <h2>2D Qrafiki Necə Oxumalı? — <span class="math">Y</span> Oxundakı <span class="math">ε</span> Dəhlizindən <span class="math">X</span> Oxundakı Sol və Sağ Ətrafa</h2>
+      </div>
+
+      <p class="section-intro">
+        Biz adətən qrafiki <span class="math">X</span>-dən <span class="math">Y</span>-ə doğru oxuyuruq. 
+        <strong>Limitdə isə hərəkət tərsinədir — Y oxundakı ε-dan başlayıb X oxuna düşür!</strong> Aşağıdakı <strong>“Addım-Addım İzah Rejimi”</strong> düymələrinə sırayla klikləyərək qrafikin necə qurulduğunu mərhələ-mərhələ izlə:
+      </p>
+
+      <!-- ADDIM-ADDIM REJİM DÜYMƏLƏRİ -->
+      <div class="step-selector-bar" id="graph-step-bar">
+        <button type="button" class="step-tab" data-step="1">
+          <span class="step-num">Addım 1</span>
+          <span class="step-title">Yalnız Y oxu: Hədəf L və ±ε dəhlizi</span>
+        </button>
+        <button type="button" class="step-tab" data-step="2">
+          <span class="step-num">Addım 2</span>
+          <span class="step-title">Y-dən çıxan şüaların f(x) əyrisini kəsməsi</span>
+        </button>
+        <button type="button" class="step-tab active" data-step="3">
+          <span class="step-num">Addım 3 (Tam Görünüş)</span>
+          <span class="step-title">Əyridən aşağı — X oxundakı Sol və Sağ Ətraf</span>
+        </button>
+      </div>
+
+      <div class="workbench-layout">
+        <!-- SOL TƏRƏF: FUNKSİYA VƏ EPSİLON İDARƏETMƏSİ -->
+        <aside class="workbench-sidebar">
+
+          <div class="panel-block">
+            <h3 class="panel-heading">1. Funksiya və Nöqtə Seçimi</h3>
+            <p class="panel-note">Hazır funksiyalardan birini seç və ya aşağıdakı riyazi düymələrlə öz ifadəni yığ:</p>
+
+            <div class="fn-preset-grid">
+              <button type="button" class="fn-btn active" data-fn="2*x" data-x0="2">
+                <strong>f(x) = 2x</strong>
+                <span>Düz xətt (Bərabər ətraf)</span>
+              </button>
+              <button type="button" class="fn-btn" data-fn="x²" data-x0="2">
+                <strong>f(x) = x²</strong>
+                <span>Kvadrat əyri (Fərqli ətraf)</span>
+              </button>
+              <button type="button" class="fn-btn" data-fn="√(x)" data-x0="4">
+                <strong>f(x) = √x</strong>
+                <span>Kökaltı əyri</span>
+              </button>
+              <button type="button" class="fn-btn" data-fn="x³/4" data-x0="2">
+                <strong>f(x) = x³/4</strong>
+                <span>Kubik əyri</span>
+              </button>
+            </div>
+
+            <div class="field-row">
+              <label for="funksiya-input">Funksiya ifadəsi <span class="math">f(x) =</span></label>
+              <input type="text" id="funksiya-input" value="2*x" spellcheck="false">
+            </div>
+
+            <!-- EKRAN RİYAZİ KLAVİATURASI -->
+            <div class="keypad-wrap">
+              <span class="keypad-caption">Riyazi simvollar (kliklə əlavə et):</span>
+              <div class="math-keypad">
+                <button type="button" class="key-btn key-accent" data-insert="x²">x²</button>
+                <button type="button" class="key-btn key-accent" data-insert="x³">x³</button>
+                <button type="button" class="key-btn key-accent" data-insert="√(x)">√x</button>
+                <button type="button" class="key-btn key-accent" data-insert="1/x">1/x</button>
+                <button type="button" class="key-btn" data-insert="x">x</button>
+                <button type="button" class="key-btn" data-insert="+">+</button>
+                <button type="button" class="key-btn" data-insert="-">−</button>
+                <button type="button" class="key-btn" data-insert="*">×</button>
+                <button type="button" class="key-btn" data-insert="/">÷</button>
+                <button type="button" class="key-btn" data-insert="(">(</button>
+                <button type="button" class="key-btn" data-insert=")">)</button>
+                <button type="button" class="key-btn key-clear" id="btn-temizle">Sil</button>
+              </div>
+            </div>
+
+            <div class="two-col-fields">
+              <div>
+                <label for="x0-input">Mərkəz nöqtə (<span class="math">x₀</span>):</label>
+                <input type="number" id="x0-input" value="2" step="0.5" min="0.5" max="5">
+              </div>
+              <div>
+                <label>Hədəf (<span class="math">L = f(x₀)</span>):</label>
+                <div class="readout-box" id="l-gosterici">L = 4.00</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <h3 class="panel-heading">2. Epsilon (<span class="math">ε</span>) Sıxılması</h3>
+            <div class="slider-header">
+              <span>Y oxundakı ε aralığı:</span>
+              <strong class="eps-badge" id="eps-reqem">ε = 0.80</strong>
+            </div>
+
+            <input type="range" id="slider" min="0.05" max="1.50" step="0.01" value="0.80">
+
+            <div class="slider-captions">
+              <span id="slider-min-label">← Sıxılmış (0.05)</span>
+              <span id="slider-max-label">Geniş (1.50) →</span>
+            </div>
+
+            <div class="action-row">
+              <button type="button" id="btn-avto-six" class="btn-primary">▶ Sıxılmanı Canlandır (ε → 0)</button>
+              <button type="button" id="btn-sifirla" class="btn-secondary">Sıfırla</button>
+            </div>
+          </div>
+
+          <div class="panel-block">
+            <h3 class="panel-heading">3. Canlı Ölçülər</h3>
+            <table class="data-table">
+              <tbody>
+                <tr>
+                  <td>① Y oxunda <span class="math">(L − ε, L + ε)</span>:</td>
+                  <td class="num-cell eps-text" id="y-araliq-metn">(3.20, 4.80)</td>
+                </tr>
+                <tr>
+                  <td>③ X oxunda alınan interval:</td>
+                  <td class="num-cell delta-text" id="x-araliq-metn">(1.60, 2.40)</td>
+                </tr>
+                <tr>
+                  <td>X-də <strong>Sol ətrafın</strong> eni:</td>
+                  <td class="num-cell" id="delta-sol-reqem">0.400</td>
+                </tr>
+                <tr>
+                  <td>X-də <strong>Sağ ətrafın</strong> eni:</td>
+                  <td class="num-cell" id="delta-sag-reqem">0.400</td>
+                </tr>
+                <tr class="row-highlight">
+                  <td>Ən dar (təhlükəsiz) ətraf:</td>
+                  <td class="num-cell" id="delta-min-reqem">0.400</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </aside>
+
+        <!-- SAĞ TƏRƏF: 2D QRAFİK VƏ SİNXRON 1D ƏDƏD OXU -->
+        <div class="workbench-main">
+
+          <!-- SEÇİLMİŞ ADDIMIN CANLI İZAHI -->
+          <div class="step-explanation-banner" id="step-banner">
+            <strong>Tam Görünüş (Addım 1 → 2 → 3):</strong> 
+            Y oxundakı narıncı <span class="math">L ± ε</span> dəhlizindən çıxan üfüqi xətlər yaşıl əyriyə dəyir və oradan düz aşağı — X oxuna düşərək göy rəngli <strong>Sol ətrafı</strong> və <strong>Sağ ətrafı</strong> yaradır.
+          </div>
+
+          <!-- 2D QRAFİK CANVAS -->
+          <div class="canvas-frame main-graph-frame">
+            <div class="graph-toolbar">
+              <div class="graph-toolbar-top">
+                <span class="figure-label">ŞƏKİL 3.1 · 2D KOORDİNAT SİSTEMİNDƏ Y OXUNDAN (ε) → X OXUNA KEÇİD</span>
+                <button type="button" class="zoom-toggle-btn" id="btn-zoom-toggle">🔍 Nöqtəyə Yaxınlaş (Mikroskop)</button>
+              </div>
+              <span class="hover-readout" id="mouse-melumat">Siçanı qrafikin üzərində gəzdirərək istənilən x nöqtəsini yoxla</span>
+            </div>
+            <canvas id="limit-canvas" width="760" height="440"></canvas>
+          </div>
+
+          <!-- SİNXRON 1D ƏDƏD OXU (Elcanın CSS div məntiqi ilə) -->
+          <div class="numberline-box">
+            <div class="nl-header">
+              <span class="figure-label">ŞƏKİL 3.2 · X OXUNDA YARANAN SOL VƏ SAĞ ƏTRAFIN 1D ƏDƏD OXU MODELİ</span>
+              <span class="nl-formula" id="simmetriya-izah">Düz xətt: Sol ətraf = Sağ ətraf = 0.400</span>
+            </div>
+
+            <div class="eded-oxu-kapsul">
+              <div class="eded-oxu-xett">
+                <div class="ox-noqte" id="ox-sol-uc"></div>
+                <div class="ox-delta-sol" id="ox-sol-qutu">
+                  <span id="ox-sol-yazi">Sol ətraf = 0.40</span>
+                </div>
+                <div class="ox-merkez" id="ox-merkez">
+                  <span class="merkez-etiket" id="ox-x0-yazi">x₀ = 2</span>
+                </div>
+                <div class="ox-delta-sag" id="ox-sag-qutu">
+                  <span id="ox-sag-yazi">Sağ ətraf = 0.40</span>
+                </div>
+                <div class="ox-noqte" id="ox-sag-uc"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         BÖLMƏ IV: SİMMETRİK (2x) VƏ ASİMMETRİK (x²) ƏTRAFIN MÜQAYİSƏSİ
+         ====================================================================== -->
+    <section id="bolme-muqayise" class="essay-section">
+      <div class="section-header">
+        <span class="section-num">FƏSİL IV · SADƏ RİYAZİ MÜQAYİSƏ</span>
+        <h2>Niyə Düz Xətdə (<span class="math">2x</span>) Sol və Sağ Ətraf Bərabərdir, Əyridə (<span class="math">x²</span>) İsə Fərqlənir?</h2>
+      </div>
+
+      <div class="comparison-grid">
+        <div class="comp-card">
+          <div class="comp-tag">HAL A · DÜZ XƏTT FUNKSİYASI: f(x) = 2x</div>
+          <h3>Eyni Sürətlə Artım → Sol və Sağ Ətraf Bərabərdir</h3>
+          <p>
+            Mərkəz <span class="math">x₀ = 2</span> olanda hədəf <span class="math">L = 4</span> olur. Əgər <span class="math">Y</span> oxunda <span class="math">ε = 1</span> götürsək (yəni cavab <strong>3 ilə 5</strong> arasında olsun desək):
+          </p>
+          <div class="comp-math">
+            <code>Cavab 3 üçün: 2x = 3 → x = 1.5  (Sol ətraf: 2 − 1.5 = 0.50)</code><br>
+            <code>Cavab 5 üçün: 2x = 5 → x = 2.5  (Sağ ətraf: 2.5 − 2 = 0.50)</code>
+          </div>
+          <p class="comp-foot">
+            Göründüyü kimi, düz xətdə <span class="math">X</span> oxundakı <strong>Sol ətraf (0.50)</strong> və <strong>Sağ ətraf (0.50)</strong> həmişə bir-birinə tam bərabər olur (<span class="math">ε / 2</span>).
+          </p>
+        </div>
+
+        <div class="comp-card">
+          <div class="comp-tag">HAL B · KVADRAT ƏYRİ FUNKSİYASI: f(x) = x²</div>
+          <h3>Dikləşən Əyri → Sol və Sağ Ətraf Fərqlənir</h3>
+          <p>
+            Yenə <span class="math">x₀ = 2</span> üçün hədəf <span class="math">L = 4</span>-dür. Yenə <span class="math">Y</span> oxunda <span class="math">ε = 1</span> götürsək (cavab <strong>3 ilə 5</strong> arasında olsun desək):
+          </p>
+          <div class="comp-math">
+            <code>Cavab 3 üçün: x² = 3 → x ≈ 1.73  (Sol ətraf: 2 − 1.73 = 0.27)</code><br>
+            <code>Cavab 5 üçün: x² = 5 → x ≈ 2.23  (Sağ ətraf: 2.23 − 2 = 0.23)</code>
+          </div>
+          <p class="comp-foot">
+            Ədəd böyüdükcə kvadratı daha sürətlə şişdiyi üçün, sağ tərəfdəki ətraf (<strong>0.23</strong>) sol tərəfdəki ətrafdan (<strong>0.27</strong>) daha qısa çıxır!
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="monograph-footer">
+    <div class="container footer-inner">
+      <span>Azərbaycan Texniki Universiteti (AzTU) · Kompüter Elmləri · Qrup 6326A2</span>
+      <span>Riyazi Analiz fənni üzrə interaktiv seminar təqdimatı</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
